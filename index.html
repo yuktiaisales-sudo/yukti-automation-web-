@@ -183,32 +183,34 @@
         <p class="max-w-4xl mx-auto mt-12 text-[10px] text-slate-400 text-center uppercase tracking-widest font-bold">Customization, Configuration and Installation charges as per Scope of Work. Google Sheet Auto Update is Free with any Google Sheet Automation Project.</p>
     </section>
 
-    <!-- Client Form -->
+    <!-- Client Form Section -->
     <section id="contact" class="py-24 bg-slate-900 text-white">
-        <div class="max-w-xl mx-auto px-6">
-            <!-- Container for the Form -->
+        <div class="max-w-xl mx-auto px-6 text-center">
+            <!-- THE FORM CONTAINER -->
             <div id="form-container">
-                <h3 class="text-3xl font-bold text-center mb-8 tracking-tighter uppercase">Inquiry Form</h3>
-                <form id="yukti-form" action="https://formspree.io/f/xzdqjjby" method="POST" class="space-y-4">
-                    <input type="text" name="company" placeholder="Company / Individual Name" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white focus:ring-2 focus:ring-blue-500" required>
+                <h3 class="text-3xl font-bold mb-8 uppercase tracking-widest">Inquiry Form</h3>
+                <form id="yukti-form" action="https://formspree.io/f/xzdqjjby" method="POST" class="space-y-4 text-left">
+                    <input type="text" name="company" placeholder="Company Name" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white focus:ring-2 focus:ring-blue-500" required>
                     <div class="grid grid-cols-2 gap-4">
-                        <input type="text" name="name" placeholder="Name" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white" required>
+                        <input type="text" name="name" placeholder="Contact Name" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white" required>
                         <input type="tel" name="mobile" placeholder="Mobile" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white" required>
                     </div>
-                    <input type="email" name="email" placeholder="Your Email Address" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white" required>
                     <textarea name="remarks" placeholder="Description / Requirements" class="w-full p-4 rounded-xl bg-slate-800 border-none text-white h-32 focus:ring-2 focus:ring-blue-500"></textarea>
-                    <button type="submit" id="submit-btn" class="w-full bg-blue-600 py-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-2xl tracking-widest uppercase">Submit Inquiry</button>
+                    <button type="submit" id="submit-btn" class="w-full bg-blue-600 py-4 rounded-xl font-bold hover:bg-blue-500 transition shadow-2xl uppercase tracking-widest">SUBMIT INQUIRY</button>
                 </form>
             </div>
 
-            <!-- SUCCESS MESSAGE (Initially Hidden) -->
-            <if (response.ok) {
-            // Hide the form and show redirect message
-            formContainer.innerHTML = `
-                <div class="text-center py-10">
-                    <h3 class="text-2xl font-bold text-green-400">INQUIRY RECEIVED</h3>
-                    <p class="text-slate-300 mt-4 italic text-sm underline">Diverting to secure billing page...</p>
-                </div>`;
+            <!-- THE SUCCESS MESSAGE (Hidden by default using 'display: none') -->
+            <div id="success-msg" style="display: none;" class="py-20">
+                <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-solid fa-check text-4xl text-green-400"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-green-400 mb-2 uppercase">Inquiry Sent</h3>
+                <p class="text-slate-300 italic underline">Redirecting to secure billing page...</p>
+            </div>
+        </div>
+    </section>
             
             // AUTOMATIC REDIRECT after 2 seconds
             setTimeout(() => {
