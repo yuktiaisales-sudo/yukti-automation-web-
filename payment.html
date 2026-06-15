@@ -72,38 +72,48 @@
     </div>
 
     <script>
-        function finalizePayment() {
-            // 1. UPDATE THESE 4 LINKS WITH YOUR RAZORPAY DASHBOARD LINKS
-            const links = {
+         // 1. DYNAMIC UI UPDATE
+    // This runs the moment the page opens to show the correct plan
+    document.addEventListener("DOMContentLoaded", function() {
+        const planName = localStorage.getItem('selectedPlanName') || "Excel Automation";
+        const planPrice = localStorage.getItem('selectedPlanPrice') || "₹2,999";
+        
+        // Update the header on the payment page
+        document.querySelector('p.text-blue-600').innerText = "PROCEEDING WITH: " + planName.toUpperCase();
+        document.querySelector('h2.text-2xl').innerText = "Billing: " + planName + " (" + planPrice + ")";
+    });
+
+    function finalizePayment() {
+        // 2. YOUR 4 RAZORPAY LINKS
+        const links = {
                 "excel": "https://rzp.io/rzp/xzEwX7u",
                 "outlook": "https://rzp.io/rzp/yHLyTHae",
                 "google": "https://rzp.io/rzp/1T2K9ktr",
                 "crm": "https://rzp.io/rzp/IVJOS7jI"
-            };
+        };
 
-            // 2. Identify the selected plan from URL
-            const params = new URLSearchParams(window.location.search);
-            const plan = params.get('plan') || "excel"; 
+        // 3. Get selection from memory
+        const planID = localStorage.getItem('selectedPlanID') || "excel";
 
-            // 3. Validation
-            const company = document.getElementById('bill_company').value;
-            const mobile = document.getElementById('bill_mobile').value;
-            const address = document.getElementById('bill_address').value;
+        // 4. Validation
+        const company = document.getElementById('bill_company').value;
+        const mobile = document.getElementById('bill_mobile').value;
+        const address = document.getElementById('bill_address').value;
 
-            if (!company || !mobile || !address) {
-                alert("Please fill in Company Name, Mobile Number, and Address.");
-                return;
-            }
-
-            // 4. Execution
-            const finalLink = links[plan];
-            if(finalLink && finalLink.startsWith("https")) {
-                alert("Opening Secure Payment Gateway for: " + plan.toUpperCase());
-                window.location.href = finalLink;
-            } else {
-                alert("Error: Payment Link for " + plan + " is not set in the code yet.");
-            }
+        if (!company || !mobile || !address) {
+            alert("Please fill in Company Name, Mobile Number, and Address.");
+            return;
         }
+
+        // 5. Final Execution: Open Razorpay
+        const finalLink = links[planID];
+        if(finalLink && finalLink.startsWith("https")) {
+            alert("Confirming order for " + planID.toUpperCase() + ". Redirecting to Secure Gateway...");
+            window.location.href = finalLink;
+        } else {
+            alert("Error: Link for " + planID + " not set yet.");
+        }
+    }
     </script>
 </body>
 </html>
