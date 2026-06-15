@@ -79,26 +79,39 @@
     </div>
 
     <script>
-        function finalizePayment() {
-            // Step 1: Update this link with the one you create in Razorpay Dashboard
-            const RAZORPAY_LINK = "https://rzp.io/rzp/xzEwX7u"; 
-            const RAZORPAY_LINK = "https://rzp.io/rzp/yHLyTHae"; 
-            const RAZORPAY_LINK = "https://rzp.io/rzp/1T2K9ktr"; 
-            const RAZORPAY_LINK = "https://rzp.io/rzp/IVJOS7jI"
+    // 1. YOUR 4 RAZORPAY LINKS (Replace with your actual links from Dashboard)
+    const links = {
+        "excel": "https://rzp.io/rzp/xzEwX7u",
+        "outlook": "https://rzp.io/rzp/yHLyTHae,
+        "google": "https://rzp.io/rzp/1T2K9ktr",
+        "crm": "https://rzp.io/rzp/IVJOS7jI"
+    };
 
-            // Step 2: Validate required fields
-            const company = document.getElementById('company-name').value;
-            const mobile = document.getElementById('mobile-number').value;
+    function finalizePayment() {
+        // Get the plan from the URL (e.g., ?plan=outlook)
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedPlan = urlParams.get('plan') || "excel"; // Defaults to excel
 
-            if(!company || !mobile) {
-                alert("Please fill in at least the Company Name and Mobile Number to proceed.");
-                return;
-            }
+        // Simple Form Validation
+        const company = document.querySelector('input[name="company"]').value;
+        const mobile = document.querySelector('input[name="mobile"]').value;
+        const address = document.querySelector('textarea[name="address"]').value;
 
-            // Step 3: Redirect to Razorpay for secure checkout
-            alert("Redirecting to Razorpay Secure Portal for payment...");
-            window.location.href = RAZORPAY_LINK;
+        if (!company || !mobile || !address) {
+            alert("Please complete the Company, Mobile, and Address fields.");
+            return;
         }
-    </script>
+
+        // Redirect to the specific Razorpay link
+        const targetUrl = links[selectedPlan];
+        
+        if (targetUrl) {
+            alert("Proceeding to Secure Razorpay Gateway for " + selectedPlan.toUpperCase() + " plan...");
+            window.location.href = targetUrl;
+        } else {
+            alert("Error: Payment link not configured correctly.");
+        }
+    }
+</script>
 </body>
 </html>
