@@ -3,81 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yukti-Ai | Billing & Secure Payment</title>
+    <title>Yukti-Ai | Billing & Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .payment-card { background: white; border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); }
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .payment-card { background: white; border-radius: 24px; box-shadow: 0 15px 35px -10px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="py-12 px-6">
+<body class="py-16 px-6">
 
     <div class="max-w-3xl mx-auto">
-        <!-- Logo/Brand -->
+        <!-- Brand Header -->
         <div class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-slate-800">YUKTI-AI</h1>
-            <p class="text-blue-600 font-bold uppercase tracking-widest text-xs mt-2">Billing & License Activation</p>
+            <h1 class="text-4xl font-extrabold text-slate-800 tracking-tight">YUKTI-AI</h1>
+            <p class="text-blue-600 font-bold uppercase tracking-[0.2em] text-xs mt-2">Secure Billing Portal</p>
         </div>
 
-        <div class="payment-card p-8 md:p-12 border border-slate-200">
+        <div class="payment-card p-8 md:p-12 border border-slate-100">
             <h2 class="text-2xl font-bold text-slate-800 mb-2">Billing Information</h2>
-            <p class="text-slate-500 mb-8 border-b pb-4 text-sm">Please provide your tax and business details to proceed.</p>
+            <p class="text-slate-500 mb-8 border-b pb-6 text-sm">Please provide your tax and business details to proceed.</p>
             
-            <form class="space-y-6">
+            <form id="billing-form" class="space-y-6">
                 <!-- Company & GST -->
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Company / Individual Name</label>
-                        <input type="text" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Company / Individual Name</label>
+                        <input id="company-name" type="text" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">GST Number (Optional)</label>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">GST Number (Optional)</label>
                         <input type="text" placeholder="24AAAAA0000A1Z5" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
                     </div>
                 </div>
 
-                <!-- Contact Details -->
+                <!-- Contact -->
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Contact Person</label>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Contact Person</label>
                         <input type="text" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Mobile Number</label>
-                        <input type="tel" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Mobile Number</label>
+                        <input id="mobile-number" type="tel" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
                     </div>
                 </div>
 
                 <div class="flex flex-col">
-                    <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Office / Billing Address</label>
+                    <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Office / Billing Address</label>
                     <textarea class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none h-24" required></textarea>
                 </div>
 
-                <!-- Payment Selection -->
+                <!-- Payment Method Icons -->
                 <div class="pt-8">
-                    <h3 class="text-lg font-bold text-slate-800 mb-6">Select Payment Method</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <label class="cursor-pointer border-2 p-4 rounded-xl flex flex-col items-center gap-3 hover:border-blue-500 hover:bg-blue-50 transition border-blue-100">
-                            <input type="radio" name="pay-mode" class="hidden" checked>
-                            <i class="fa-solid fa-qrcode text-blue-600 text-3xl"></i>
-                            <span class="font-bold text-xs uppercase tracking-tighter">UPI / QR Code</span>
-                        </label>
-                        <label class="cursor-pointer border-2 p-4 rounded-xl flex flex-col items-center gap-3 hover:border-blue-500 hover:bg-blue-50 transition border-slate-100">
-                            <input type="radio" name="pay-mode" class="hidden">
-                            <i class="fa-solid fa-credit-card text-blue-600 text-3xl"></i>
-                            <span class="font-bold text-xs uppercase tracking-tighter">Card / NetBanking</span>
-                        </label>
-                        <label class="cursor-pointer border-2 p-4 rounded-xl flex flex-col items-center gap-3 hover:border-blue-500 hover:bg-blue-50 transition border-slate-100">
-                            <input type="radio" name="pay-mode" class="hidden">
-                            <i class="fa-solid fa-building-columns text-blue-600 text-3xl"></i>
-                            <span class="font-bold text-xs uppercase tracking-tighter">Bank Transfer</span>
-                        </label>
+                    <h3 class="text-lg font-bold text-slate-800 mb-6 text-center">All Payment Methods Supported</h3>
+                    <div class="flex justify-center items-center gap-8 opacity-60">
+                        <i class="fa-brands fa-cc-visa text-4xl"></i>
+                        <i class="fa-brands fa-cc-mastercard text-4xl"></i>
+                        <i class="fa-solid fa-qrcode text-3xl"></i>
+                        <i class="fa-solid fa-building-columns text-2xl"></i>
                     </div>
                 </div>
 
-                <!-- Pay Button -->
+                <!-- Action Button -->
                 <button type="button" onclick="finalizePayment()" class="w-full bg-blue-600 text-white py-5 rounded-xl font-extrabold text-lg shadow-2xl hover:bg-blue-700 transition mt-10 uppercase tracking-widest">
                     Confirm & Proceed to Payment
                 </button>
@@ -85,14 +74,27 @@
         </div>
 
         <p class="text-center text-slate-400 text-xs mt-10 uppercase tracking-widest font-bold">
-            Secure Payment Gateway powered by Yukti-Ai
+            Secure Gateway Powered by Razorpay & Yukti-Ai
         </p>
     </div>
 
     <script>
         function finalizePayment() {
-            alert("Verification and Automated Link Generation in Progress. \n\nour sales team will send you the secure payment link via WhatsApp and Email within 15 minutes.");
-            window.location.href = "index.html"; 
+            // Step 1: Update this link with the one you create in Razorpay Dashboard
+            const RAZORPAY_LINK = "https://rzp.io/rzp/xzEwX7u"; 
+
+            // Step 2: Validate required fields
+            const company = document.getElementById('company-name').value;
+            const mobile = document.getElementById('mobile-number').value;
+
+            if(!company || !mobile) {
+                alert("Please fill in at least the Company Name and Mobile Number to proceed.");
+                return;
+            }
+
+            // Step 3: Redirect to Razorpay for secure checkout
+            alert("Redirecting to Razorpay Secure Portal for payment...");
+            window.location.href = RAZORPAY_LINK;
         }
     </script>
 </body>
