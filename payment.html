@@ -3,115 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yukti-Ai | Billing & Payment</title>
+    <title>Yukti-Ai | Billing & Secure Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
-        .payment-card { background: white; border-radius: 24px; box-shadow: 0 15px 35px -10px rgba(0,0,0,0.1); }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .payment-card { background: white; border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="py-16 px-6">
+<body class="py-12 px-6">
 
     <div class="max-w-3xl mx-auto">
-        <!-- Brand Header -->
         <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold text-slate-800 tracking-tight">YUKTI-AI</h1>
-            <p class="text-blue-600 font-bold uppercase tracking-[0.2em] text-xs mt-2">Secure Billing Portal</p>
+            <h1 class="text-3xl font-bold text-slate-800">YUKTI-AI</h1>
+            <p class="text-blue-600 font-bold uppercase tracking-widest text-xs mt-2">Billing & License Activation</p>
         </div>
 
-        <div class="payment-card p-8 md:p-12 border border-slate-100">
+        <div class="payment-card p-8 md:p-12 border border-slate-200">
             <h2 class="text-2xl font-bold text-slate-800 mb-2">Billing Information</h2>
-            <p class="text-slate-500 mb-8 border-b pb-6 text-sm">Please provide your tax and business details to proceed.</p>
+            <p class="text-slate-500 mb-8 border-b pb-4 text-sm">Please provide your details to generate your secure link.</p>
             
             <form id="billing-form" class="space-y-6">
-                <!-- Company & GST -->
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Company / Individual Name</label>
-                        <input id="company-name" type="text" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" required>
+                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Company / Individual Name</label>
+                        <input type="text" id="bill_company" class="p-3 bg-slate-50 border rounded-lg outline-none" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">GST Number (Optional)</label>
-                        <input type="text" placeholder="24AAAAA0000A1Z5" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">GST Number (Optional)</label>
+                        <input type="text" id="bill_gst" placeholder="24AAAAA0000A1Z5" class="p-3 bg-slate-50 border rounded-lg outline-none">
                     </div>
                 </div>
 
-                <!-- Contact -->
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Contact Person</label>
-                        <input type="text" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Contact Person</label>
+                        <input type="text" id="bill_person" class="p-3 bg-slate-50 border rounded-lg outline-none" required>
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Mobile Number</label>
-                        <input id="mobile-number" type="tel" class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Mobile Number</label>
+                        <input type="tel" id="bill_mobile" class="p-3 bg-slate-50 border rounded-lg outline-none" required>
                     </div>
                 </div>
 
                 <div class="flex flex-col">
-                    <label class="text-[10px] font-bold text-slate-500 uppercase mb-2">Office / Billing Address</label>
-                    <textarea class="p-3 bg-slate-50 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none h-24" required></textarea>
+                    <label class="text-[10px] font-bold text-slate-400 uppercase mb-2">Office / Billing Address</label>
+                    <textarea id="bill_address" class="p-3 bg-slate-50 border rounded-lg outline-none h-24" required></textarea>
                 </div>
 
-                <!-- Payment Method Icons -->
-                <div class="pt-8">
-                    <h3 class="text-lg font-bold text-slate-800 mb-6 text-center">All Payment Methods Supported</h3>
-                    <div class="flex justify-center items-center gap-8 opacity-60">
-                        <i class="fa-brands fa-cc-visa text-4xl"></i>
-                        <i class="fa-brands fa-cc-mastercard text-4xl"></i>
-                        <i class="fa-solid fa-qrcode text-3xl"></i>
-                        <i class="fa-solid fa-building-columns text-2xl"></i>
+                <div class="text-center pt-6">
+                    <p class="text-xs font-bold text-slate-400 mb-4 uppercase">All Major Payment Methods Supported</p>
+                    <div class="flex justify-center gap-6 text-2xl text-slate-300">
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-solid fa-qrcode"></i>
+                        <i class="fa-solid fa-building-columns"></i>
                     </div>
                 </div>
 
-                <!-- Action Button -->
                 <button type="button" onclick="finalizePayment()" class="w-full bg-blue-600 text-white py-5 rounded-xl font-extrabold text-lg shadow-2xl hover:bg-blue-700 transition mt-10 uppercase tracking-widest">
                     Confirm & Proceed to Payment
                 </button>
             </form>
         </div>
 
-        <p class="text-center text-slate-400 text-xs mt-10 uppercase tracking-widest font-bold">
-            Secure Gateway Powered by Razorpay & Yukti-Ai
-        </p>
+        <p class="text-center text-slate-400 text-xs mt-10 uppercase tracking-widest font-bold">&copy; 2026 Yukti-Ai | Secure Payment Portal</p>
     </div>
 
     <script>
-    // 1. YOUR 4 RAZORPAY LINKS (Replace with your actual links from Dashboard)
-    const links = {
-        "excel": "https://rzp.io/rzp/xzEwX7u",
-        "outlook": "https://rzp.io/rzp/yHLyTHae,
-        "google": "https://rzp.io/rzp/1T2K9ktr",
-        "crm": "https://rzp.io/rzp/IVJOS7jI"
-    };
+        function finalizePayment() {
+            // 1. UPDATE THESE 4 LINKS WITH YOUR RAZORPAY DASHBOARD LINKS
+            const links = {
+                "excel": "https://rzp.io/rzp/xzEwX7u",
+                "outlook": "https://rzp.io/rzp/yHLyTHae",
+                "google": "https://rzp.io/rzp/1T2K9ktr",
+                "crm": "https://rzp.io/rzp/IVJOS7jI"
+            };
 
-    function finalizePayment() {
-        // Get the plan from the URL (e.g., ?plan=outlook)
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectedPlan = urlParams.get('plan') || "excel"; // Defaults to excel
+            // 2. Identify the selected plan from URL
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan') || "excel"; 
 
-        // Simple Form Validation
-        const company = document.querySelector('input[name="company"]').value;
-        const mobile = document.querySelector('input[name="mobile"]').value;
-        const address = document.querySelector('textarea[name="address"]').value;
+            // 3. Validation
+            const company = document.getElementById('bill_company').value;
+            const mobile = document.getElementById('bill_mobile').value;
+            const address = document.getElementById('bill_address').value;
 
-        if (!company || !mobile || !address) {
-            alert("Please complete the Company, Mobile, and Address fields.");
-            return;
+            if (!company || !mobile || !address) {
+                alert("Please fill in Company Name, Mobile Number, and Address.");
+                return;
+            }
+
+            // 4. Execution
+            const finalLink = links[plan];
+            if(finalLink && finalLink.startsWith("https")) {
+                alert("Opening Secure Payment Gateway for: " + plan.toUpperCase());
+                window.location.href = finalLink;
+            } else {
+                alert("Error: Payment Link for " + plan + " is not set in the code yet.");
+            }
         }
-
-        // Redirect to the specific Razorpay link
-        const targetUrl = links[selectedPlan];
-        
-        if (targetUrl) {
-            alert("Proceeding to Secure Razorpay Gateway for " + selectedPlan.toUpperCase() + " plan...");
-            window.location.href = targetUrl;
-        } else {
-            alert("Error: Payment link not configured correctly.");
-        }
-    }
-</script>
+    </script>
 </body>
 </html>
