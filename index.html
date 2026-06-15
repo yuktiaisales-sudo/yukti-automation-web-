@@ -251,10 +251,11 @@
             }
         }
 
-        const form = document.getElementById("yukti-form");
-    	const formContainer = document.getElementById("form-container");
-    	const successMsg = document.getElementById("success-msg");
-    	const submitBtn = document.getElementById("submit-btn");
+        <script>
+    const form = document.getElementById("yukti-form");
+    const formContainer = document.getElementById("form-container");
+    const successMsg = document.getElementById("success-msg");
+    const submitBtn = document.getElementById("submit-btn");
 
     form.addEventListener("submit", async function(e) {
         e.preventDefault();
@@ -269,39 +270,31 @@
             });
 
             if (response.ok) {
-                // 1. Hide the form area
+                // 1. Hide the form
                 formContainer.style.display = "none";
-                // 2. Show the Success area
-                successMsg.classList.remove("hidden");
-                // 3. Clear the form data for next time
-                form.reset();
+                // 2. Show the success message
+                successMsg.style.display = "block";
+                // 3. Redirect to payment page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = "payment.html";
+                }, 2000);
             } else {
-                alert("Submission failed. Please try again.");
+                alert("Submission failed. Please check your internet and try again.");
                 submitBtn.disabled = false;
                 submitBtn.innerText = "SUBMIT INQUIRY";
             }
         } catch (error) {
-            alert("Network error. Check your connection.");
+            alert("Network error. Please try again.");
             submitBtn.disabled = false;
             submitBtn.innerText = "SUBMIT INQUIRY";
         }
     });
 
-    // Function to bring back the form without refreshing page
-    function resetYuktiForm() {
-        successMsg.classList.add("hidden");
-        formContainer.style.display = "block";
-        submitBtn.disabled = false;
-        submitBtn.innerText = "SUBMIT INQUIRY";
-    }
-
-    // Toggle WhatsApp Widget
     function toggleWA() {
         const pop = document.getElementById('wa-popup');
         pop.style.display = (pop.style.display === 'block') ? 'none' : 'block';
     }
 
-    // Currency Conversion
     async function convertCurrency() {
         try {
             const response = await fetch('https://ipapi.co/json/');
@@ -319,11 +312,6 @@
         } catch (e) {}
     }
     convertCurrency();
-
-        let visits = localStorage.getItem('visit_count') || 1248;
-        visits = parseInt(visits) + 1;
-        localStorage.setItem('visit_count', visits);
-        document.getElementById('count').innerText = visits.toLocaleString();
-    </script>
+</script>
 </body>
 </html>
