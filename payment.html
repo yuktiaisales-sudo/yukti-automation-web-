@@ -83,33 +83,35 @@
         document.querySelector('h2.text-2xl').innerText = "Billing: " + planName + " (" + planPrice + ")";
     });
 
+    <script>
     function finalizePayment() {
-        // 2. YOUR 4 RAZORPAY LINKS
+        // 1. DYNAMIC DISCOUNTED LINKS
         const links = {
-                "excel": "https://rzp.io/rzp/xzEwX7u",
-                "outlook": "https://rzp.io/rzp/yHLyTHae",
-                "google": "https://rzp.io/rzp/1T2K9ktr",
-                "crm": "https://rzp.io/rzp/IVJOS7jI"
+            "excel": "https://rzp.io/rzp/xzEwX7u", // ₹2,999
+            "outlook": "https://rzp.io/rzp/yHLyTHae", // ₹3,599 (10% off)
+            "google": "https://rzp.io/rzp/1T2K9ktr", // ₹4,249 (15% off)
+             "crm": "https://rzp.io/rzp/IVJOS7jI" // ₹5,099 (15% off)
         };
 
-        // 3. Get selection from memory
-        const planID = localStorage.getItem('selectedPlanID') || "excel";
+        const params = new URLSearchParams(window.location.search);
+        const plan = params.get('plan') || "excel"; 
 
-        // 4. Validation
+        // 2. MANDATORY FIELD CHECK
         const company = document.getElementById('bill_company').value;
+        const person = document.getElementById('bill_person').value;
         const mobile = document.getElementById('bill_mobile').value;
-        const address = document.getElementById('bill_address').value;
+        const email = document.getElementById('bill_email').value;
 
-        if (!company || !mobile || !address) {
-            alert("Please fill in Company Name, Mobile Number, and Address.");
+        if (!company || !person || !mobile || !email) {
+            alert("All fields are mandatory. Please provide full billing details.");
             return;
         }
 
-        // 5. Final Execution: Open Razorpay
-        const finalLink = links[planID];
-        if(finalLink && finalLink.startsWith("https")) {
-            alert("Confirming order for " + planID.toUpperCase() + ". Redirecting to Secure Gateway...");
-            window.location.href = finalLink;
+        // 3. PROCEED TO RAZORPAY
+        const target = links[plan];
+        alert("Inquiry Logged. Redirecting to Secure Gateway for " + plan.toUpperCase() + "...");
+        window.location.href = target;
+    }
         } else {
             alert("Error: Link for " + planID + " not set yet.");
         }
