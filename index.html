@@ -115,95 +115,104 @@
             </div>
         </div>
     </section>
+ 
+   <!-- Update the Pricing Section disclaimer style -->
+<p class="max-w-4xl mx-auto mt-12 text-sm text-slate-500 text-center font-bold leading-relaxed uppercase">
+    Customization, configuration and installation charges extra as per scope of work. <br>
+    Google Sheet Auto Update is free with any Google Sheet Automation Project.
+</p>
 
-    <!-- Demo Version Notice -->
-    <section class="py-12 bg-blue-50 border-y border-blue-100">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Public Demo Version</span>
-            <h2 class="text-2xl font-bold text-slate-800 mt-4 mb-4">Yukti-AI Demo Capabilities</h2>
-            <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                This trial version showcases our core business automation engine. While this demo provides universal data cleaning and synchronization, our **Final Licensed Versions** are fully bespoke.
-            </p>
-            <div class="grid md:grid-cols-2 gap-4 text-left text-xs font-semibold text-slate-500">
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-400">
-                    <i class="fa-solid fa-flask mr-2"></i> Features shown for demonstration purposes.
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-400">
-                    <i class="fa-solid fa-gears mr-2"></i> Customization available based on client requirements.
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-400">
-                    <i class="fa-solid fa-comments-pie mr-2"></i> Live implementation provided after consultation.
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-orange-400">
-                    <i class="fa-solid fa-shield-halved mr-2"></i> Enterprise-grade security in final build.
-                </div>
-            </div>
-            <p class="mt-8 text-slate-500 text-xs italic">
-                Every business process is unique. Contact us for a free consultation to map your specific CRM fields.
-            </p>
+<!-- Update Pricing Cards with your new Discount Logic -->
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <!-- Excel Automation -->
+    <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 flex flex-col">
+        <h4 class="font-bold text-slate-800 mb-4 border-b pb-4">Excel Automation</h4>
+        <div class="my-4 text-3xl font-bold text-slate-800">₹2,999</div>
+        <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
+            <li>15 Files Maximum</li>
+            <li>3 Free Support Calls</li>
+        </ul>
+        <a href="payment.html?plan=excel" class="bg-slate-800 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
+    </div>
+
+    <!-- Outlook Automation (10% Yearly Discount) -->
+    <div class="price-card bg-white p-8 rounded-2xl border-2 border-blue-600 shadow-2xl scale-105 flex flex-col relative">
+        <div class="absolute -top-4 right-4 bg-orange-500 text-white text-[10px] font-bold py-1 px-3 rounded-full">10% OFF YEARLY</div>
+        <h4 class="font-bold text-blue-600 mb-4 border-b pb-4">Outlook Automation</h4>
+        <div class="my-4 text-3xl font-bold text-slate-800">
+            <span class="text-sm line-through text-slate-400">₹3,999</span> ₹3,599
         </div>
-    </section>
+        <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
+            <li>Outlook Attachment Sync</li>
+            <li>Yearly Subscription</li>
+        </ul>
+        <a href="payment.html?plan=outlook" class="bg-blue-600 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
+    </div>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-24 px-6 bg-slate-50 border-y border-slate-100">
-        <div class="max-w-7xl mx-auto text-center mb-16">
-            <h2 class="text-4xl font-bold text-slate-800 uppercase tracking-widest">Strategy & Pricing</h2>
-            <p class="text-slate-500 mt-4 text-xs font-bold tracking-widest uppercase">Prices automatically convert based on location</p>
+    <!-- Google Sheets (15% Discount) -->
+    <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 flex flex-col relative">
+        <div class="absolute -top-4 right-4 bg-orange-500 text-white text-[10px] font-bold py-1 px-3 rounded-full">15% OFF</div>
+        <h4 class="font-bold text-slate-800 mb-4 border-b pb-4">Google Sheet Auto</h4>
+        <div class="my-4 text-3xl font-bold text-slate-800">
+            <span class="text-sm line-through text-slate-400">₹4,999</span> ₹4,249
         </div>
+        <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
+            <li>10 Dynamic Cloud Sheets</li>
+            <li>Master Sheet in Email</li>
+        </ul>
+        <a href="payment.html?plan=google" class="bg-slate-800 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
+    </div>
 
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Card 1 -->
-            <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
-                <h4 class="font-bold text-slate-800 mb-4 border-b pb-4">Excel Automation</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800"><span class="currency-symbol">₹</span><span class="price-val" data-inr="2999">2,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
-                    <li>15 Files Maximum</li>
-                    <li>3 Free Support Calls</li>
-                    <li>UPI Pay Ready</li>
-                    <li>No Customization</li>
-                </ul>
-                <a href="#contact" class="bg-slate-800 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
-            </div>
-            <!-- Card 2 -->
-            <div class="price-card bg-white p-8 rounded-2xl border-2 border-blue-600 shadow-2xl scale-105 flex flex-col">
-                <h4 class="font-bold text-blue-600 mb-4 border-b pb-4 text-sm uppercase">Outlook Automation</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800"><span class="currency-symbol">₹</span><span class="price-val" data-inr="3999">3,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow font-medium">
-                    <li>Attachments to Master Sheet</li>
-                    <li>15 Files / 5 Emails</li>
-                    <li>3 Free Support Calls</li>
-                    <li>No Customization</li>
-                </ul>
-                <a href="#contact" class="bg-blue-600 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
-            </div>
-            <!-- Card 3 -->
-            <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
-                <h4 class="font-bold text-slate-800 mb-4 border-b pb-4 text-sm uppercase">Google Sheets</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800"><span class="currency-symbol">₹</span><span class="price-val" data-inr="4999">4,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
-                    <li>10 Sheets Maximum</li>
-                    <li>Master Sheet in Email</li>
-                    <li>3 Free Support Calls</li>
-                    <li>No Customization</li>
-                </ul>
-                <a href="#contact" class="bg-slate-800 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
-            </div>
-            <!-- Card 4 -->
-            <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
-                <h4 class="font-bold text-slate-800 mb-4 border-b pb-4 text-sm uppercase tracking-tighter">Sheets to CRM Push</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800"><span class="currency-symbol">₹</span><span class="price-val" data-inr="5999">5,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow font-bold">
-                    <li>Lead Push to CRM</li>
-                    <li>Auto Update (FREE)</li>
-                    <li>3 Free Support Calls</li>
-                    <li>No Customization</li>
-                </ul>
-                <a href="#contact" class="bg-slate-800 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
-            </div>
+    <!-- CRM Push (15% Discount) -->
+    <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 flex flex-col relative">
+        <div class="absolute -top-4 right-4 bg-orange-500 text-white text-[10px] font-bold py-1 px-3 rounded-full">15% OFF</div>
+        <h4 class="font-bold text-slate-800 mb-4 border-b pb-4">Sheets to CRM Push</h4>
+        <div class="my-4 text-3xl font-bold text-slate-800">
+            <span class="text-sm line-through text-slate-400">₹5,999</span> ₹5,099
         </div>
-        <p class="max-w-4xl mx-auto mt-12 text-[10px] text-slate-400 text-center uppercase tracking-widest font-bold">Customization, configuration and installation charges extra as per scope of work. Google Sheet Auto Update is Free with any Google Sheet Automation Project.</p>
-    </section>
+        <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
+            <li>Direct Lead Push to CRM</li>
+            <li>Auto-Assign Sales Team</li>
+        </ul>
+        <a href="payment.html?plan=crm" class="bg-slate-800 text-white text-center py-2 rounded-lg font-bold">Select Plan</a>
+    </div>
+</div>
 
+<!-- Update the Registration Script to trigger download after submission -->
+<script>
+    const form = document.getElementById("yukti-form");
+    const downloadUrl = "https://docs.google.com/uc?export=download&id=1T3kZ20xkGbhB-Nz4_FAPuRLALJqzhiQ6";
+
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById("submit-btn");
+        btn.disabled = true; 
+        btn.innerText = "SUBMITTING & DOWNLOADING...";
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                // 1. Success Message
+                document.getElementById("form-container").style.display = "none";
+                document.getElementById("success-msg").classList.remove("hidden");
+                
+                // 2. TRIGGER THE DIRECT DOWNLOAD
+                window.location.href = downloadUrl;
+            } else {
+                alert("Please fill all mandatory fields correctly.");
+                btn.disabled = false;
+            }
+        } catch (error) {
+            btn.disabled = false;
+            alert("Error connecting to server. Please try again.");
+        }
+    });
+</script>
     <!-- Inquiry Form -->
     <section id="contact" class="py-24 bg-slate-900 text-white">
         <div class="max-w-xl mx-auto px-6">
