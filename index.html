@@ -186,36 +186,7 @@
             </p>
         </div>
     </section>
-
-    form.addEventListener("submit", async function(e) {
-        e.preventDefault();
-        const btn = document.getElementById("submit-btn");
-        btn.disabled = true; 
-        btn.innerText = "SUBMITTING & DOWNLOADING...";
-
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-                // 1. Success Message
-                document.getElementById("form-container").style.display = "none";
-                document.getElementById("success-msg").classList.remove("hidden");
-                
-                // 2. TRIGGER THE DIRECT DOWNLOAD
-                window.location.href = downloadUrl;
-            } else {
-                alert("Please fill all mandatory fields correctly.");
-                btn.disabled = false;
-            }
-        } catch (error) {
-            btn.disabled = false;
-            alert("Error connecting to server. Please try again.");
-        }
-    });
+   
 </script>
     <!-- Inquiry Form -->
     <section id="contact" class="py-24 bg-slate-900 text-white">
@@ -258,6 +229,52 @@
             <a href="https://wa.me/919316072612" target="_blank" class="block p-2 hover:bg-green-50 rounded text-xs font-bold border">Line 2: Tech Support</a>
         </div>
     </div>
+
+    <script>
+    // 1. SELECT THE ELEMENTS
+    const form = document.getElementById("yukti-form");
+    const formArea = document.getElementById("form-container");
+    const successArea = document.getElementById("success-area");
+    const submitBtn = document.getElementById("submit-btn");
+    const downloadUrl = "https://docs.google.com/uc?export=download&id=1T3kZ20xkGbhB-Nz4_FAPuRLALJqzhiQ6";
+
+   <script>
+    // 1. SELECT THE ELEMENTS
+    const form = document.getElementById("yukti-form");
+    const formArea = document.getElementById("form-container");
+    const successArea = document.getElementById("success-area");
+    const submitBtn = document.getElementById("submit-btn");
+    const downloadUrl = "https://docs.google.com/uc?export=download&id=1T3kZ20xkGbhB-Nz4_FAPuRLALJqzhiQ6";
+
+    // 2. THE FORM SUBMISSION LOGIC
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault(); 
+        submitBtn.disabled = true;
+        submitBtn.innerText = "SENDING...";
+
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            formArea.style.display = "none";
+            successArea.classList.remove("hidden");
+            // TRIGGER THE DOWNLOAD
+            window.location.href = downloadUrl;
+        } else {
+            alert("Submission failed. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "SUBMIT INQUIRY";
+        }
+    });
+
+    // 3. OTHER FUNCTIONS (Pricing toggle, etc.)
+    function togglePricing() {
+        // ... (as provided in previous message)
+    }
+</script>
 
     <script>
         function toggleCard(element) {
