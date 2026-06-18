@@ -1,0 +1,19 @@
+{
+  "name": "yukti-automation-web",
+  "version": "1.0.0",
+  "description": "Yukti-Ai Smart Automation for Growing Businesses",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML project - no build required'"
+  },
+  "keywords": [
+    "automation",
+    "analytics"
+  ],
+  "author": "Yukti-Ai",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
