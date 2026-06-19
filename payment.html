@@ -88,7 +88,7 @@
 
     <script>
         // --- 1. CONFIGURATION ---
-        const razorpayLinks = {
+        const subscriptionLinks = { 
            "excel_monthly": "https://rzp.io/rzp/8rsLH0Az", // ₹2,999
             "excel_yearly": "https://rzp.io/rzp/kckrDae",  // ₹32,388 (Lump Sum)
             "outlook_monthly": "https://rzp.io/rzp/4agOCOv", // ₹3,999
@@ -101,62 +101,79 @@
 
 
         const names = {
-            "excel": "Excel Automation",
-            "outlook": "Outlook Automation",
-            "google": "Google Sheet Automation",
-            "crm": "Sheets to CRM Push"
-        };
+        "excel": "Excel Automation",
+        "outlook": "Outlook Automation",
+        "google": "Google Sheet Automation",
+        "crm": "Sheets to CRM Push"
+    };
 
-        const prices = {
-            "excel_monthly": "₹2,999", "excel_yearly": "₹32,388",
-            "outlook_monthly": "₹3,999", "outlook_yearly": "₹43,188",
-            "google_monthly": "₹4,999", "google_yearly": "₹50,988",
-            "crm_monthly": "₹5,999", "crm_yearly": "₹61,188"
-        };
+    const prices = {
+        "excel_monthly": "₹2,999", "excel_yearly": "₹32,388",
+        "outlook_monthly": "₹3,999", "outlook_yearly": "₹43,188",
+        "google_monthly": "₹4,999", "google_yearly": "₹50,988",
+        "crm_monthly": "₹5,999", "crm_yearly": "₹61,188"
+    };
 
-        // --- 2. RUN ON LOAD ---
-        window.onload = function() {
-            const params = new URLSearchParams(window.location.search);
-            const plan = params.get('plan') || "excel";
-            const cycle = params.get('cycle') || "monthly";
-            const fullKey = plan + "_" + cycle;
+    // 2. AUTOMATIC UI REFRESH ON LOAD
+    function refreshOrderSummary() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Use .toLowerCase() to ensure matches even if URL case varies
+        const rawPlan = urlParams.get('plan') || "excel";
+        const rawCycle = urlParams.get('cycle') || "monthly";
+        
+        const plan = rawPlan.toLowerCase().trim();
+        const cycle = rawCycle.toLowerCase().trim();
+        const fullKey = plan + "_" + cycle;
 
-            // Update Text
-            document.getElementById('display-plan').innerText = (names[plan] || "Excel Automation") + " (" + cycle.toUpperCase() + ")";
-            document.getElementById('display-price').innerText = prices[fullKey] || "₹2,999";
-            document.getElementById('plan-banner').innerText = "PROCEEDING WITH: " + (names[plan] || "EXCEL").toUpperCase();
-            
-            if(cycle === 'yearly') {
-                document.getElementById('billing-cycle-text').innerText = "Annual Total + GST";
-                document.getElementById('billing-cycle-text').style.color = "#2563eb";
-            }
-        };
+        console.log("Loading details for:", fullKey);
 
-        // --- 3. FINAL BUTTON ACTION ---
-        function finalizePayment() {
-            const params = new URLSearchParams(window.location.search);
-            const plan = params.get('plan') || "excel";
-            const cycle = params.get('cycle') || "monthly";
-            const key = plan + "_" + cycle;
+        // Update Text Elements with Safety Fallbacks
+        const displayName = names[plan] || "Excel Automation";
+        const displayPrice = prices[fullKey] || "₹2,999";
 
-            const company = document.getElementById('bill_company').value;
-            const person = document.getElementById('bill_person').value;
-            const mobile = document.getElementById('bill_mobile').value;
-            const email = document.getElementById('bill_email').value;
-
-            if (!company || !person || !mobile || !email) {
-                alert("All billing fields are mandatory.");
-                return;
-            }
-
-            const targetLink = razorpayLinks[key];
-            if(targetLink && targetLink.startsWith("http")) {
-                alert("Redirecting to Secure Gateway for " + key.toUpperCase());
-                window.location.href = targetLink;
-            } else {
-                alert("Payment link for this plan not configured yet.");
-            }
+        document.getElementById('display-plan').innerText = displayName + " (" + cycle.toUpperCase() + ")";
+        document.getElementById('display-price').innerText = displayPrice;
+        document.getElementById('plan-banner').innerText = "PROCEEDING WITH: " + displayName.toUpperCase();
+        
+        if(cycle === 'yearly') {
+            document.getElementById('billing-cycle-text').innerText = "Annual Total + GST";
+            document.getElementById('billing-cycle-text').style.color = "#2563eb";
         }
-    </script>
+    }
+
+    // 3. FINAL PAYMENT BUTTON ACTION
+    function finalizePayment() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const plan = (urlParams.get('plan') || "excel").toLowerCase().trim();
+        const cycle = (urlParams.get('cycle') || "monthly").toLowerCase().trim();
+        const fullKey = plan + "_" + cycle;
+
+        // Validation: Ensure everything is typed
+        const comp = document.getElementById('bill_company').value;
+        const pers = document.getElementById('bill_person').value;
+        const mob = document.getElementById('bill_mobile').value;
+        const em = document.getElementById('bill_email').value;
+        const addr = document.getElementById('bill_address').value;
+
+        if (!comp || !pers || !mob || !em || !addr) {
+            alert("All fields are mandatory. Please complete the form to proceed.");
+            return;
+        }
+
+        // Get the specific link for this plan/cycle
+        const targetLink = subscriptionLinks[fullKey];
+
+        if (targetLink && targetLink.startsWith("https")) {
+            alert("Redirecting to Razorpay Secure Portal...");
+            window.location.href = targetLink;
+        } else {
+            alert("Technical Error: Payment link for " + fullKey.toUpperCase() + " is not configured correctly in the website code.");
+        }
+    }
+
+    // Initialize immediately
+    window.onload = refreshOrderSummary;
+</script>
 </body>
 </html>
