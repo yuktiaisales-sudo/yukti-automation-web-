@@ -280,10 +280,9 @@
         }
 
         function goToPayment(plan) {
-            localStorage.setItem('yukti_plan', plan);
-            localStorage.setItem('yukti_cycle', isYearly ? 'yearly' : 'monthly');
-            window.location.href = "payment.html";
-        }
+            const cycle = isYearly ? 'yearly' : 'monthly';
+            window.location.href = `payment.html?plan=${plan}&cycle=${cycle}`;
+}
 
         function toggleCard(element) {
             const details = element.nextElementSibling;
