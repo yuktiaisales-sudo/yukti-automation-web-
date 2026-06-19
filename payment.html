@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yukti-Ai | Secure Billing Portal</title>
+    <title>Yukti-Ai | Billing & Secure Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,35 +12,34 @@
         .payment-card { background: white; border-radius: 24px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
         .label-style { font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; }
         .input-style { padding: 12px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; width: 100%; outline: none; transition: 0.2s; }
-        .input-style:focus { border-color: #2563eb; ring: 2px; ring-color: #2563eb; }
+        .input-style:focus { border-color: #2563eb; }
     </style>
 </head>
 <body class="py-12 px-6">
 
     <div class="max-w-3xl mx-auto">
-        <!-- Brand Header -->
         <div class="text-center mb-12">
             <h1 class="text-3xl font-black text-slate-800 tracking-tighter">YUKTI-AI</h1>
-            <div id="plan-banner" class="mt-2 inline-block px-4 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest">
-                License Activation
-            </div>
+            <p id="plan-banner" class="mt-2 inline-block px-4 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest">
+                LICENSE ACTIVATION
+            </p>
         </div>
 
         <div class="payment-card p-8 md:p-12">
-            <!-- Order Summary Info -->
             <div class="flex justify-between items-start mb-10 border-b pb-8">
                 <div>
                     <h2 class="text-2xl font-bold text-slate-800">Order Summary</h2>
-                    <p id="display-plan" class="text-blue-600 font-bold text-sm mt-1 uppercase">Loading Plan...</p>
+                    <!-- FIXED: Added ID display-plan here -->
+                    <p id="display-plan" class="text-blue-600 font-bold text-sm mt-1 uppercase">Loading Plan Details...</p>
                 </div>
                 <div class="text-right">
-                    <div id="display-price" class="text-3xl font-black text-slate-800">--</div>
+                    <!-- FIXED: Added ID display-price here -->
+                    <div id="display-price" class="text-3xl font-black text-slate-800">₹0</div>
                     <p id="billing-cycle-text" class="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-tighter">Per Month + GST</p>
                 </div>
             </div>
             
-            <form id="billing-form" class="space-y-6">
-                <!-- Row 1: Company & GST -->
+            <form class="space-y-6">
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <label class="label-style block">Company / Individual Name</label>
@@ -51,8 +50,6 @@
                         <input type="text" id="bill_gst" placeholder="e.g. 24AAAAA0000A1Z5" class="input-style">
                     </div>
                 </div>
-
-                <!-- Row 2: Person & Mobile -->
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <label class="label-style block">Contact Person Name</label>
@@ -63,20 +60,15 @@
                         <input type="tel" id="bill_mobile" class="input-style" required>
                     </div>
                 </div>
-
-                <!-- Row 3: Email -->
                 <div>
                     <label class="label-style block">Email ID (For License Key Delivery)</label>
                     <input type="email" id="bill_email" class="input-style" required>
                 </div>
-
-                <!-- Row 4: Address -->
                 <div>
                     <label class="label-style block">Billing Address</label>
                     <textarea id="bill_address" class="input-style h-24" required></textarea>
                 </div>
 
-                <!-- Payment Methods UI -->
                 <div class="pt-6 text-center border-t">
                     <p class="text-[10px] font-bold text-slate-400 mb-6 uppercase tracking-[0.2em]">Secure Automated Payment via Razorpay</p>
                     <div class="flex justify-center gap-8 text-3xl text-slate-200">
@@ -87,23 +79,17 @@
                     </div>
                 </div>
 
-                <!-- The Final Button -->
                 <button type="button" onclick="finalizePayment()" class="w-full bg-blue-600 text-white py-5 rounded-xl font-black text-lg shadow-2xl hover:bg-blue-700 transition mt-10 uppercase tracking-widest">
                     Confirm & Start Subscription
                 </button>
             </form>
         </div>
-
-        <p class="text-center text-slate-400 text-[10px] mt-12 uppercase tracking-widest font-bold">
-            &copy; 2026 Yukti-Ai Business Automation | Ahmedabad, India
-        </p>
     </div>
 
-    <!-- LOGIC SCRIPT -->
     <script>
-        // AS IT HEAD: Create "Subscription Links" in Razorpay Dashboard and paste them here
-       const razorpayLinks = {
-            "excel_monthly": "https://rzp.io/rzp/8rsLH0Az", // ₹2,999
+        // --- 1. CONFIGURATION ---
+        const razorpayLinks = {
+           "excel_monthly": "https://rzp.io/rzp/8rsLH0Az", // ₹2,999
             "excel_yearly": "https://rzp.io/rzp/kckrDae",  // ₹32,388 (Lump Sum)
             "outlook_monthly": "https://rzp.io/rzp/4agOCOv", // ₹3,999
             "outlook_yearly": "https://rzp.io/rzp/lNlwiq7P,  // ₹43,188 (Lump Sum)
@@ -113,60 +99,62 @@
             "crm_yearly": "https://rzp.io/rzp/GxPZDHzX"      // ₹61,188 (Lump Sum)
         };
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const plan = localStorage.getItem('yukti_plan') || "excel";
-            const cycle = localStorage.getItem('yukti_cycle') || "monthly";
-            
-            const names = {
-                "excel": "Excel Automation",
-                "outlook": "Outlook Automation",
-                "google": "Google Sheet Automation",
-                "crm": "Sheets to CRM Push"
-            };
 
-            const displayPrices = {
-                "excel_monthly": "₹2,999", "excel_yearly": "₹32,388",
-                "outlook_monthly": "₹3,999", "outlook_yearly": "₹43,188",
-                "google_monthly": "₹4,999", "google_yearly": "₹50,988",
-                "crm_monthly": "₹5,999", "crm_yearly": "₹61,188"
-            };
+        const names = {
+            "excel": "Excel Automation",
+            "outlook": "Outlook Automation",
+            "google": "Google Sheet Automation",
+            "crm": "Sheets to CRM Push"
+        };
 
+        const prices = {
+            "excel_monthly": "₹2,999", "excel_yearly": "₹32,388",
+            "outlook_monthly": "₹3,999", "outlook_yearly": "₹43,188",
+            "google_monthly": "₹4,999", "google_yearly": "₹50,988",
+            "crm_monthly": "₹5,999", "crm_yearly": "₹61,188"
+        };
+
+        // --- 2. RUN ON LOAD ---
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan') || "excel";
+            const cycle = params.get('cycle') || "monthly";
             const fullKey = plan + "_" + cycle;
-            
-            // UI Updates
-            document.getElementById('display-plan').innerText = names[plan] + " (" + cycle.toUpperCase() + ")";
-            document.getElementById('display-price').innerText = displayPrices[fullKey];
-            document.getElementById('plan-banner').innerText = "PROCEEDING WITH: " + names[plan].toUpperCase();
+
+            // Update Text
+            document.getElementById('display-plan').innerText = (names[plan] || "Excel Automation") + " (" + cycle.toUpperCase() + ")";
+            document.getElementById('display-price').innerText = prices[fullKey] || "₹2,999";
+            document.getElementById('plan-banner').innerText = "PROCEEDING WITH: " + (names[plan] || "EXCEL").toUpperCase();
             
             if(cycle === 'yearly') {
                 document.getElementById('billing-cycle-text').innerText = "Annual Total + GST";
                 document.getElementById('billing-cycle-text').style.color = "#2563eb";
             }
-        });
+        };
 
+        // --- 3. FINAL BUTTON ACTION ---
         function finalizePayment() {
-            const plan = localStorage.getItem('yukti_plan') || "excel";
-            const cycle = localStorage.getItem('yukti_cycle') || "monthly";
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan') || "excel";
+            const cycle = params.get('cycle') || "monthly";
             const key = plan + "_" + cycle;
 
-            // Simple Form Validation
-            const ids = ['bill_company', 'bill_person', 'bill_mobile', 'bill_email', 'bill_address'];
-            let valid = true;
-            ids.forEach(id => {
-                if(!document.getElementById(id).value.trim()) valid = false;
-            });
+            const company = document.getElementById('bill_company').value;
+            const person = document.getElementById('bill_person').value;
+            const mobile = document.getElementById('bill_mobile').value;
+            const email = document.getElementById('bill_email').value;
 
-            if (!valid) {
-                alert("Please fill all mandatory fields to generate your license.");
+            if (!company || !person || !mobile || !email) {
+                alert("All billing fields are mandatory.");
                 return;
             }
 
-            const targetLink = subscriptionLinks[key];
-            if(targetLink && targetLink.startsWith("https")) {
-                alert("Diverting to Secure Payment Portal for " + key.replace('_',' ').toUpperCase());
+            const targetLink = razorpayLinks[key];
+            if(targetLink && targetLink.startsWith("http")) {
+                alert("Redirecting to Secure Gateway for " + key.toUpperCase());
                 window.location.href = targetLink;
             } else {
-                alert("Technical Error: Link not configured. Please contact yuktiaisales@gmail.com");
+                alert("Payment link for this plan not configured yet.");
             }
         }
     </script>
