@@ -90,64 +90,79 @@
         };
 
 
-        const prices = {
-            "excel_monthly": "₹2,999", "excel_yearly": "₹32,388",
-            "outlook_monthly": "₹3,999", "outlook_yearly": "₹43,188",
-            "google_monthly": "₹4,999", "google_yearly": "₹50,988",
-            "crm_monthly": "₹5,999", "crm_yearly": "₹61,188"
-        };
-
         const names = {
-            "excel": "Excel Automation",
-            "outlook": "Outlook Automation",
-            "google": "Google Sheet Automation",
-            "crm": "Sheets to CRM Push"
-        };
+        "excel": "Excel Automation",
+        "outlook": "Outlook Automation",
+        "google": "Google Sheet Automation",
+        "crm": "Sheets to CRM Push"
+    };
 
-        // --- 2. DYNAMIC UI UPDATE ---
-        window.onload = function() {
-            const params = new URLSearchParams(window.location.search);
-            const plan = params.get('plan') || "excel";
-            const cycle = params.get('cycle') || "monthly";
-            const fullKey = plan + "_" + cycle;
+    const prices = {
+        "excel_monthly": "₹2,999", "excel_yearly": "₹32,388",
+        "outlook_monthly": "₹3,999", "outlook_yearly": "₹43,188",
+        "google_monthly": "₹4,999", "google_yearly": "₹50,988",
+        "crm_monthly": "₹5,999", "crm_yearly": "₹61,188"
+    };
 
-            document.getElementById('display-plan').innerText = (names[plan]) + " (" + cycle.toUpperCase() + ")";
-            document.getElementById('display-price').innerText = prices[fullKey];
-            document.getElementById('hidden-plan').value = names[plan] + " (" + cycle.toUpperCase() + ")";
-            document.getElementById('hidden-price').value = prices[fullKey];
-        };
+    // 2. DYNAMIC UI REFRESH
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const plan = (urlParams.get('plan') || "excel").toLowerCase().trim();
+        const cycle = (urlParams.get('cycle') || "monthly").toLowerCase().trim();
+        const fullKey = plan + "_" + cycle;
 
-        // --- 3. FORM SUBMISSION (EMAIL) THEN REDIRECT ---
+        document.getElementById('display-plan').innerText = (names[plan] || "Excel") + " (" + cycle.toUpperCase() + ")";
+        document.getElementById('display-price').innerText = prices[fullKey] || "₹2,999";
+        document.getElementById('plan-banner').innerText = "PROCEEDING WITH: " + (names[plan] || "EXCEL").toUpperCase();
+        
+        // Formspree hidden fields
+        document.getElementById('hidden-plan').value = names[plan] + " (" + cycle.toUpperCase() + ")";
+        document.getElementById('hidden-price').value = prices[fullKey];
+
+        if(cycle === 'yearly') {
+            document.getElementById('billing-cycle-text').innerText = "Annual Total + GST";
+            document.getElementById('billing-cycle-text').style.color = "#2563eb";
+        }
+    };
+
+    // 3. CAPTURE & REDIRECT
         const form = document.getElementById("billing-form");
         form.addEventListener("submit", async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById("submit-btn");
-            btn.disabled = true; 
-            btn.innerText = "CAPTURING ORDER...";
+        e.preventDefault();
+        const btn = document.getElementById("submit-btn");
+        btn.disabled = true; 
+        btn.innerText = "CAPTURING ORDER...";
 
-            const params = new URLSearchParams(window.location.search);
-            const fullKey = (params.get('plan') || "excel") + "_" + (params.get('cycle') || "monthly");
+        const params = new URLSearchParams(window.location.search);
+        const plan = (params.get('plan') || "excel").toLowerCase().trim();
+        const cycle = (params.get('cycle') || "monthly").toLowerCase().trim();
+        const fullKey = plan + "_" + cycle;
 
-            // Step 1: Send details to yuktiaisales@gmail.com via Formspree
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
+        try {
+            // Send details to Formspree first
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
 
-                if (response.ok) {
-                    // Step 2: Redirect to Razorpay
-                    btn.innerText = "REDIRECTING TO GATEWAY...";
-                    window.location.href = links[fullKey];
-                } else {
-                    alert("Submission failed. Redirecting directly to gateway...");
-                    window.location.href = links[fullKey];
-                }
-            } catch (err) {
-                window.location.href = links[fullKey];
+            // Redirect to Razorpay regardless of email success (Sales protection)
+            btn.innerText = "REDIRECTING TO GATEWAY...";
+            
+            // FIXED: Pointing correctly to 'razorpayLinks' variable
+            const finalLink = razorpayLinks[fullKey];
+            
+            if(finalLink) {
+                window.location.href = finalLink;
+            } else {
+                alert("Technical Error: Link for " + fullKey + " not found.");
+                btn.disabled = false;
             }
-        });
-    </script>
+        } catch (err) {
+            // Final fallback
+            window.location.href = razorpayLinks[fullKey];
+        }
+    });
+</script>
 </body>
 </html>
