@@ -19,76 +19,70 @@
     <div class="max-w-3xl mx-auto">
         <div class="text-center mb-12">
             <h1 class="text-3xl font-black text-slate-800 tracking-tighter">YUKTI-AI</h1>
-            <p id="plan-banner" class="mt-2 inline-block px-4 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest">
-                LICENSE ACTIVATION
-            </p>
+            <p id="plan-banner" class="mt-2 inline-block px-4 py-1 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest">ORDER PROCESSING</p>
         </div>
 
         <div class="payment-card p-8 md:p-12">
             <div class="flex justify-between items-start mb-10 border-b pb-8">
                 <div>
                     <h2 class="text-2xl font-bold text-slate-800">Order Summary</h2>
-                    <p id="display-plan" class="text-blue-600 font-bold text-sm mt-1 uppercase">EXCEL AUTOMATION (MONTHLY)</p>
+                    <p id="display-plan" class="text-blue-600 font-bold text-sm mt-1 uppercase">Loading...</p>
                 </div>
                 <div class="text-right">
-                    <div id="display-price" class="text-3xl font-black text-slate-800">₹2,999</div>
-                    <p id="billing-cycle-text" class="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-tighter">Per Month + GST</p>
+                    <div id="display-price" class="text-3xl font-black text-slate-800">--</div>
+                    <p id="billing-cycle-text" class="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-tighter">Tax Invoice + GST</p>
                 </div>
             </div>
             
-            <form class="space-y-6">
+            <!-- We send this form to Formspree to capture the order details before Razorpay -->
+            <form id="billing-form" action="https://formspree.io/f/xzdqjjby" method="POST" class="space-y-6">
+                <!-- Hidden fields for Formspree to know which plan was bought -->
+                <input type="hidden" name="ordered_plan" id="hidden-plan">
+                <input type="hidden" name="ordered_price" id="hidden-price">
+
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <label class="text-[10px] font-bold text-slate-400 uppercase block mb-2">Company Name</label>
-                        <input type="text" id="bill_company" class="input-style" required>
+                        <input type="text" name="company" id="bill_company" class="input-style" required>
                     </div>
                     <div>
                         <label class="text-[10px] font-bold text-slate-400 uppercase block mb-2">GST Number</label>
-                        <input type="text" id="bill_gst" placeholder="Optional" class="input-style">
+                        <input type="text" name="gst" id="bill_gst" placeholder="Optional" class="input-style">
                     </div>
                 </div>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <label class="text-[10px] font-bold text-slate-400 uppercase block mb-2">Contact Person</label>
-                        <input type="text" id="bill_person" class="input-style" required>
+                        <input type="text" name="contact_name" id="bill_person" class="input-style" required>
                     </div>
                     <div>
                         <label class="text-[10px] font-bold text-slate-400 uppercase block mb-2">Mobile</label>
-                        <input type="tel" id="bill_mobile" class="input-style" required>
+                        <input type="tel" name="mobile" id="bill_mobile" class="input-style" required>
                     </div>
                 </div>
                 <div>
                     <label class="text-[10px] font-bold text-slate-400 uppercase block mb-2">Email ID</label>
-                    <input type="email" id="bill_email" class="input-style" required>
+                    <input type="email" name="email" id="bill_email" class="input-style" required>
                 </div>
                 <div>
                     <label class="text-[10px] font-bold text-slate-400 uppercase block mb-2">Billing Address</label>
-                    <textarea id="bill_address" class="input-style h-24" required></textarea>
+                    <textarea name="address" id="bill_address" class="input-style h-24" required></textarea>
                 </div>
 
-                <div class="pt-6 text-center border-t">
-                    <div class="flex justify-center gap-8 text-3xl text-slate-200">
-                        <i class="fa-brands fa-cc-visa"></i>
-                        <i class="fa-brands fa-cc-mastercard"></i>
-                        <i class="fa-solid fa-qrcode"></i>
-                        <i class="fa-solid fa-building-columns"></i>
-                    </div>
-                </div>
-
-                <button type="button" onclick="finalizePayment()" class="w-full bg-blue-600 text-white py-5 rounded-xl font-black text-lg shadow-2xl hover:bg-blue-700 transition mt-10 uppercase tracking-widest">
-                    Confirm & Start Subscription
+                <button type="submit" id="submit-btn" class="w-full bg-blue-600 text-white py-5 rounded-xl font-black text-lg shadow-2xl hover:bg-blue-700 transition mt-10 uppercase tracking-widest">
+                    Confirm & Proceed to Payment
                 </button>
             </form>
         </div>
     </div>
 
     <script>
-        // --- 1. RAZORPAY LINKS ---
+        // --- 1. RAZORPAY SUBSCRIPTION LINKS ---
         const razorpayLinks = {
-            "excel_monthly": "https://rzp.io/rzp/8rsLH0Az", // ₹2,999
+           "excel_monthly": "https://rzp.io/rzp/8rsLH0Az", // ₹2,999
             "excel_yearly": "https://rzp.io/rzp/kckrDae",  // ₹32,388 (Lump Sum)
             "outlook_monthly": "https://rzp.io/rzp/4agOCOv", // ₹3,999
-            "outlook_yearly": "https://rzp.io/rzp/lNlwiq7P,  // ₹43,188 (Lump Sum)
+            "outlook_yearly": "https://rzp.io/rzp/lNlwiq7P",  // ₹43,188 (Lump Sum)
             "google_monthly": "https://rzp.io/rzp/JB5wx5M", // ₹4,999
             "google_yearly": "https://rzp.io/rzp/0oI7H4de",  // ₹50,988 (Lump Sum)
             "crm_monthly": "https://rzp.io/rzp/ChLNOpt",    // ₹5,999
@@ -110,51 +104,50 @@
             "crm": "Sheets to CRM Push"
         };
 
-        // --- 2. THE FORCE UPDATE ---
-        function updateUI() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const plan = (urlParams.get('plan') || "excel").toLowerCase();
-            const cycle = (urlParams.get('cycle') || "monthly").toLowerCase();
+        // --- 2. DYNAMIC UI UPDATE ---
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const plan = params.get('plan') || "excel";
+            const cycle = params.get('cycle') || "monthly";
             const fullKey = plan + "_" + cycle;
 
-            console.log("Detecting Plan:", fullKey);
+            document.getElementById('display-plan').innerText = (names[plan]) + " (" + cycle.toUpperCase() + ")";
+            document.getElementById('display-price').innerText = prices[fullKey];
+            document.getElementById('hidden-plan').value = names[plan] + " (" + cycle.toUpperCase() + ")";
+            document.getElementById('hidden-price').value = prices[fullKey];
+        };
 
-            // Force update text labels
-            document.getElementById('display-plan').innerText = (names[plan] || "Excel Automation") + " (" + cycle.toUpperCase() + ")";
-            document.getElementById('display-price').innerText = prices[fullKey] || "₹2,999";
-            document.getElementById('plan-banner').innerText = "PROCEEDING WITH: " + (names[plan] || "Excel").toUpperCase();
-            
-            if(cycle === 'yearly') {
-                document.getElementById('billing-cycle-text').innerText = "Annual Total + GST";
-                document.getElementById('billing-cycle-text').style.color = "#2563eb";
+        // --- 3. FORM SUBMISSION (EMAIL) THEN REDIRECT ---
+        const form = document.getElementById("billing-form");
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById("submit-btn");
+            btn.disabled = true; 
+            btn.innerText = "CAPTURING ORDER...";
+
+            const params = new URLSearchParams(window.location.search);
+            const fullKey = (params.get('plan') || "excel") + "_" + (params.get('cycle') || "monthly");
+
+            // Step 1: Send details to yuktiaisales@gmail.com via Formspree
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // Step 2: Redirect to Razorpay
+                    btn.innerText = "REDIRECTING TO GATEWAY...";
+                    window.location.href = links[fullKey];
+                } else {
+                    alert("Submission failed. Redirecting directly to gateway...");
+                    window.location.href = links[fullKey];
+                }
+            } catch (err) {
+                window.location.href = links[fullKey];
             }
-        }
-
-        // --- 3. FINAL BUTTON ACTION ---
-        function finalizePayment() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const plan = (urlParams.get('plan') || "excel").toLowerCase();
-            const cycle = (urlParams.get('cycle') || "monthly").toLowerCase();
-            const key = plan + "_" + cycle;
-
-            const company = document.getElementById('bill_company').value;
-            const mobile = document.getElementById('bill_mobile').value;
-
-            if (!company || !mobile) {
-                alert("Please fill in Company Name and Mobile Number.");
-                return;
-            }
-
-            const targetLink = razorpayLinks[key];
-            if(targetLink && targetLink.startsWith("http")) {
-                window.location.href = targetLink;
-            } else {
-                alert("Configuration Error: Link for " + key + " missing.");
-            }
-        }
-
-        // Run UI update immediately
-        updateUI();
+        });
     </script>
 </body>
 </html>
