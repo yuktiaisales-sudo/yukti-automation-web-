@@ -146,6 +146,41 @@
         </div>
     </section>
 
+     <section class="py-20 bg-slate-50 border-y">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">Calculate Your Time Savings</h2>
+        <p class="text-slate-500 mb-10">See how much human effort Yukti-Ai reclaims for your business.</p>
+        
+        <div class="bg-white p-8 rounded-3xl shadow-xl border border-blue-100 grid md:grid-cols-2 gap-8 text-left">
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-4">Daily Leads Processed</label>
+                <input type="range" id="leads-range" min="10" max="500" value="100" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600" oninput="calculateROI()">
+                <div class="flex justify-between mt-2 text-sm font-bold text-slate-700">
+                    <span>10</span>
+                    <span id="leads-val" class="text-blue-600 text-lg">100 Leads</span>
+                    <span>500</span>
+                </div>
+            </div>
+            
+            <div class="bg-blue-600 rounded-2xl p-6 text-white text-center">
+                <p class="text-xs uppercase font-bold opacity-80 mb-2">Hours Reclaimed Monthly</p>
+                <div id="hours-saved" class="text-4xl font-black">40 Hours</div>
+                <p class="mt-4 text-[10px] leading-tight opacity-70">Based on standard manual merging vs. 30-second Yukti automation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function calculateROI() {
+    const leads = document.getElementById('leads-range').value;
+    document.getElementById('leads-val').innerText = leads + " Leads";
+    // Formula: (leads * 2 minutes manual) * 22 days / 60 mins
+    const saved = Math.round((leads * 2 * 22) / 60);
+    document.getElementById('hours-saved').innerText = saved + " Hours";
+}
+</script>   
+
     <!-- Pricing Section -->
     <section id="pricing" class="py-24 px-6 bg-white">
         <div class="max-w-7xl mx-auto text-center mb-16">
