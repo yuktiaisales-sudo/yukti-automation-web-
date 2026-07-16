@@ -295,62 +295,105 @@ function calculateROI() {
             <h2 class="text-4xl font-bold text-slate-800 uppercase tracking-widest">Monthly & Yearly Plans</h2>
             
             <!-- Monthly / Yearly Toggle -->
-            <div class="mt-8 flex justify-center items-center gap-4">
-                <span class="text-sm font-bold text-slate-500">Monthly</span>
-                <button onclick="togglePricing()" id="price-toggle" class="w-14 h-7 bg-blue-600 rounded-full relative">
-                    <div id="toggle-circle" style="left: 0.25rem" class="w-5 h-5 bg-white rounded-full absolute top-1 transition-all duration-300"></div>
-                </button>
-                <span class="text-sm font-bold text-slate-500">Yearly <span class="text-orange-500">(Save up to 15%)</span></span>
-            </div>
-        </div>
+            function togglePricing() {
+        isYearly = !isYearly;
+        document.getElementById('toggle-circle').style.left = isYearly ? '1.75rem' : '0.25rem';
+        
+        // Updated prices based on your image (₹ License / month)
+        // License price remains per month, but the tag shows it's the yearly discounted rate
+        document.querySelector('.p1-val').innerText = isYearly ? "2,249" : "2,499";
+        document.querySelector('.p2-val').innerText = isYearly ? "3,149" : "3,499";
+        document.querySelector('.p3-val').innerText = isYearly ? "3,824" : "4,499";
+        document.querySelector('.p4-val').innerText = isYearly ? "4,674" : "5,499";
+    }
 
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Card 1 -->
-            <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
-                <h4 class="font-bold text-slate-800 mb-4 border-b pb-4">Excel Automation</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800">₹<span class="p1-val" data-inr="2999">2,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
-                    <li>15 Files Maximum</li>
-                    <li>3 Free Support Calls</li>
-                    <li class="yearly-extra hidden text-blue-600 font-bold">10% Yearly Discount Applied</li>
-                </ul>
-               <button onclick="window.location.href='payment.html?plan=excel&cycle=' + (isYearly ? 'yearly' : 'monthly')" class="...">Select Plan</button>
+        
+        <!-- Card 1: Excel Optimizer -->
+        <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 flex flex-col shadow-sm">
+            <h4 class="font-black text-slate-800 mb-2 uppercase tracking-tighter">Excel Optimizer</h4>
+            <div class="mb-4 pb-4 border-b border-slate-100">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
+                <div class="text-xl font-bold text-slate-800">₹9,999</div>
+                <p class="text-[9px] text-blue-600 font-bold italic">(Includes Custom Schema Mapping)</p>
             </div>
-            <!-- Card 2 -->
-            <div class="price-card bg-white p-8 rounded-2xl border-2 border-blue-600 shadow-2xl scale-105 flex flex-col relative">
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold py-1 px-4 rounded-full uppercase tracking-tighter">Most Recommended</div>
-                <h4 class="font-bold text-blue-600 mb-4 border-b pb-4 text-sm">Outlook Automation</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800">₹<span class="p2-val" data-inr="3999">3,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow font-medium">
-                    <li>Attachment Sync</li>
-                    <li>15 Files / 5 Emails</li>
-                    <li class="yearly-extra hidden text-blue-600 font-bold">10% Yearly Discount Applied</li>
-                </ul>
-                <button onclick="window.location.href='payment.html?plan=outlook&cycle=' + (isYearly ? 'yearly' : 'monthly')" class="...">Select Plan</button>
+            <div class="my-4">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
+                <div class="text-3xl font-black text-slate-800">₹<span class="p1-val" data-inr="2499">2,499</span></div>
+                <p class="text-[9px] text-slate-400 font-bold uppercase">(Local Machine Lock)</p>
             </div>
-            <!-- Card 3 -->
-            <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
-                <h4 class="font-bold text-slate-800 mb-4 border-b pb-4 text-sm">Google Sheets</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800">₹<span class="p3-val" data-inr="4999">4,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow">
-                    <li>10 Sheets Maximum</li>
-                    <li>Master Sheet in Email</li>
-                    <li class="yearly-extra hidden text-blue-600 font-bold">15% Yearly Discount Applied</li>
-                </ul>
-                <button onclick="window.location.href='payment.html?plan=google&cycle=' + (isYearly ? 'yearly' : 'monthly')" class="...">Select Plan</button>
-            </div>
-            <!-- Card 4 -->
-            <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
-                <h4 class="font-bold text-slate-800 mb-4 border-b pb-4 text-sm tracking-tighter">Sheets to CRM Push</h4>
-                <div class="my-4 text-3xl font-bold text-slate-800">₹<span class="p4-val" data-inr="5999">5,999</span></div>
-                <ul class="text-xs text-slate-600 space-y-4 mb-8 flex-grow font-bold">
-                    <li>Lead Push to CRM</li>
-                    <li>Auto Update (FREE)</li>
-                    <li class="yearly-extra hidden text-blue-600 font-bold">15% Yearly Discount Applied</li>
-                </ul>
-                <button onclick="window.location.href='payment.html?plan=crm&cycle=' + (isYearly ? 'yearly' : 'monthly')" class="...">Select Plan</button>
-            </div>
+            <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
+                <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Up to 15 Complex Files</li>
+                <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Local Desktop Execution</li>
+                <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Zero Cloud API Costs</li>
+            </ul>
+            <button onclick="goToPayment('excel')" class="bg-slate-800 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-slate-700 transition">Select Optimizer</button>
         </div>
+
+        <!-- Card 2: Outlook Automation Pipeline -->
+        <div class="price-card bg-white p-8 rounded-2xl border-2 border-blue-600 shadow-2xl scale-105 flex flex-col relative">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[9px] font-bold py-1 px-4 rounded-full uppercase tracking-tighter shadow-lg">Most Popular</div>
+            <h4 class="font-black text-blue-600 mb-2 uppercase tracking-tighter">Outlook Pipeline</h4>
+            <div class="mb-4 pb-4 border-b border-blue-50">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
+                <div class="text-xl font-bold text-slate-800">₹14,999</div>
+                <p class="text-[9px] text-blue-600 font-bold italic">(Includes Email Rule Triggers)</p>
+            </div>
+            <div class="my-4">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
+                <div class="text-3xl font-black text-slate-800">₹<span class="p2-val" data-inr="3499">3,499</span></div>
+                <p class="text-[9px] text-slate-400 font-bold uppercase">(Local Machine Lock)</p>
+            </div>
+            <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 15 Files / 5 Data Extractions</li>
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Secure Local Attachment Handling</li>
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Master Sheet + Summary</li>
+            </ul>
+            <button onclick="goToPayment('outlook')" class="bg-blue-600 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-blue-700 transition">Select Pipeline</button>
+        </div>
+
+        <!-- Card 3: Cloud Sheets Integrator -->
+        <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 flex flex-col shadow-sm">
+            <h4 class="font-black text-slate-800 mb-2 uppercase tracking-tighter">Cloud Integrator</h4>
+            <div class="mb-4 pb-4 border-b border-slate-100">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
+                <div class="text-xl font-bold text-slate-800">₹19,999</div>
+                <p class="text-[9px] text-blue-600 font-bold italic">(Includes Google API Authentication)</p>
+            </div>
+            <div class="my-4">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
+                <div class="text-3xl font-black text-slate-800">₹<span class="p3-val" data-inr="4499">4,499</span></div>
+                <p class="text-[9px] text-slate-400 font-bold uppercase">(Secure Cloud Sync)</p>
+            </div>
+            <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 10 Live Google Sheets</li>
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Desktop-to-Cloud Data Bridge</li>
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Fixed-Time Email Reporting</li>
+            </ul>
+            <button onclick="goToPayment('google')" class="bg-slate-800 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-slate-700 transition">Select Integrator</button>
+        </div>
+
+        <!-- Card 4: Sheets to CRM Sync -->
+        <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 flex flex-col shadow-sm">
+            <h4 class="font-black text-slate-800 mb-2 uppercase tracking-tighter text-xs">CRM Dynamic Sync</h4>
+            <div class="mb-4 pb-4 border-b border-slate-100">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
+                <div class="text-xl font-bold text-slate-800">₹29,999</div>
+                <p class="text-[9px] text-blue-600 font-bold italic">(Includes Payload & Field Validation)</p>
+            </div>
+            <div class="my-4">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
+                <div class="text-3xl font-black text-slate-800">₹<span class="p4-val" data-inr="5499">5,499</span></div>
+                <p class="text-[9px] text-slate-400 font-bold uppercase">(Enterprise Flow)</p>
+            </div>
+            <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Direct Custom CRM Sync</li>
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Automated Client Lead Routing</li>
+                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Daily Performance Email</li>
+            </ul>
+            <button onclick="goToPayment('crm')" class="bg-slate-800 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-slate-700 transition">Select CRM Sync</button>
+        </div>
+    </div>
 
        <!-- Setup Fee Value Section -->
     <div class="max-w-7xl mx-auto mt-20 px-6">
