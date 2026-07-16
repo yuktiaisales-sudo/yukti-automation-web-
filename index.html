@@ -289,36 +289,32 @@ function calculateROI() {
 }
 </script>   
 
-       <!-- Strategy & Pricing Section -->
+     <!-- Strategy & Pricing Section -->
     <section id="pricing" class="py-24 px-6 bg-slate-50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto text-center mb-16">
             <h2 class="text-4xl font-black text-slate-800 uppercase tracking-widest">Strategy & Pricing</h2>
             
-            <!-- Monthly / Yearly Toggle -->
+            <!-- THE MISSING TOGGLE BUTTON -->
             <div class="mt-8 flex justify-center items-center gap-4">
                 <span class="text-sm font-bold text-slate-500">Monthly</span>
                 <button onclick="togglePricing()" id="price-toggle" class="w-14 h-7 bg-blue-600 rounded-full relative transition duration-300">
                     <div id="toggle-circle" style="left: 0.25rem" class="w-5 h-5 bg-white rounded-full absolute top-1 transition-all duration-300"></div>
                 </button>
-                <span class="text-sm font-bold text-slate-500">Yearly <span class="text-orange-500">(Save 10%)</span></span>
+                <span class="text-sm font-bold text-slate-500">Yearly <span class="text-orange-500">(Save 10% on License)</span></span>
             </div>
         </div>
 
-        <!-- THE HORIZONTAL GRID (Fixed: 4 Columns) -->
         <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            
             <!-- Plan 1: Excel Optimizer -->
             <div class="price-card bg-white p-8 rounded-2xl border border-slate-200 flex flex-col shadow-sm">
                 <h4 class="font-black text-slate-800 mb-2 uppercase text-sm tracking-tighter">Excel Optimizer</h4>
                 <div class="mb-4 pb-4 border-b border-slate-100">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
-                    <div class="text-xl font-bold text-slate-800">₹12500</div>
-                    <p class="text-[9px] text-blue-600 font-bold italic">Includes Custom Schema Mapping</p>
+                    <div class="text-xl font-bold text-slate-800">₹12,500</div>
                 </div>
                 <div class="my-4">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
-                    <div class="text-3xl font-black text-slate-800">₹<span class="p1-val">3500</span></div>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase">(Local Machine Lock)</p>
+                    <div class="text-3xl font-black text-slate-800">₹<span class="p1-val">3,500</span></div>
                 </div>
                 <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
                     <li><i class="fa-solid fa-check text-green-500 mr-2"></i> 15 Complex Files Max</li>
@@ -328,21 +324,19 @@ function calculateROI() {
             </div>
 
             <!-- Plan 2: Outlook Pipeline -->
-            <div class="price-card bg-white p-8 rounded-2xl border-2 border-blue-600 shadow-2xl flex flex-col relative scale-105">
+            <div class="price-card bg-white p-8 rounded-2xl border-2 border-blue-600 shadow-2xl scale-105 flex flex-col relative">
                 <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[9px] font-bold py-1 px-4 rounded-full uppercase tracking-tighter">Recommended</div>
                 <h4 class="font-black text-blue-600 mb-2 uppercase text-sm tracking-tighter">Outlook Pipeline</h4>
                 <div class="mb-4 pb-4 border-b border-blue-50">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
-                    <div class="text-xl font-bold text-slate-800">₹21000</div>
-                    <p class="text-[9px] text-blue-600 font-bold italic">Includes Email Rule Triggers</p>
+                    <div class="text-xl font-bold text-slate-800">₹21,000</div>
                 </div>
                 <div class="my-4">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
-                    <div class="text-3xl font-black text-slate-800">₹<span class="p2-val">4500</span></div>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase">(Local Machine Lock)</p>
+                    <div class="text-3xl font-black text-slate-800">₹<span class="p2-val">4,500</span></div>
                 </div>
                 <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
-                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 5 Email Data Extractions</li>
+                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Email Rule Triggers</li>
                     <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Attachment Handling</li>
                 </ul>
                 <button onclick="goToPayment('outlook')" class="bg-blue-600 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-blue-700 transition">Select Plan</button>
@@ -353,17 +347,15 @@ function calculateROI() {
                 <h4 class="font-black text-slate-800 mb-2 uppercase text-sm tracking-tighter">Cloud Integrator</h4>
                 <div class="mb-4 pb-4 border-b border-slate-100">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
-                    <div class="text-xl font-bold text-slate-800">₹27000</div>
-                    <p class="text-[9px] text-blue-600 font-bold italic">Includes Google API Auth</p>
+                    <div class="text-xl font-bold text-slate-800">₹27,000</div>
                 </div>
                 <div class="my-4">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
-                    <div class="text-3xl font-black text-slate-800">₹<span class="p3-val">6000</span></div>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase">(Secure Cloud Sync)</p>
+                    <div class="text-3xl font-black text-slate-800">₹<span class="p3-val">6,000</span></div>
                 </div>
                 <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
                     <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 10 Live Google Sheets</li>
-                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Cloud-to-Desktop Bridge</li>
+                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Google API Auth</li>
                 </ul>
                 <button onclick="goToPayment('google')" class="bg-slate-800 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-slate-700 transition">Select Plan</button>
             </div>
@@ -373,69 +365,35 @@ function calculateROI() {
                 <h4 class="font-black text-slate-800 mb-2 uppercase text-xs tracking-tighter">CRM Dynamic Sync</h4>
                 <div class="mb-4 pb-4 border-b border-slate-100">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">One-Time Setup</span>
-                    <div class="text-xl font-bold text-slate-800">₹35000</div>
-                    <p class="text-[9px] text-blue-600 font-bold italic">Includes Field Validation</p>
+                    <div class="text-xl font-bold text-slate-800">₹35,000</div>
                 </div>
                 <div class="my-4">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Monthly License</span>
-                    <div class="text-3xl font-black text-slate-800">₹<span class="p4-val">9500</span></div>
-                    <p class="text-[9px] text-slate-400 font-bold uppercase">(Enterprise Flow)</p>
+                    <div class="text-3xl font-black text-slate-800">₹<span class="p4-val">9,500</span></div>
                 </div>
                 <ul class="text-[11px] font-bold text-slate-500 space-y-3 mb-8 flex-grow text-left">
-                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Direct CRM Pipeline Push</li>
-                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Auto Client Lead Routing</li>
+                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Direct CRM Sync</li>
+                    <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Lead Payload Validation</li>
                 </ul>
                 <button onclick="goToPayment('crm')" class="bg-slate-800 text-white py-3 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-slate-700 transition">Select Plan</button>
             </div>
         </div>
+    </section>
 
-        <!-- Value Props Section: ENLARGED FONTS -->
-        <div class="max-w-7xl mx-auto mt-20 grid md:grid-cols-3 gap-8 px-6">
+    <!-- NEW SCRIPT BLOCK (This hides the code from the page) -->
+    <script>
+        let isYearly = false;
+
+        function togglePricing() {
+            isYearly = !isYearly;
+            document.getElementById('toggle-circle').style.left = isYearly ? '1.75rem' : '0.25rem';
             
-            <!-- Column 1 -->
-            <div class="bg-white p-10 rounded-2xl border-t-8 border-blue-600 shadow-lg text-left transition hover:shadow-xl">
-                <h5 class="font-black text-slate-800 mb-4 uppercase text-xl tracking-tight">Custom Tailored Code</h5>
-                <p class="text-base text-slate-600 leading-relaxed font-semibold">
-                    The setup fee covers the precise engineering needed to map our automation engines directly to your unique business spreadsheets.
-                </p>
-            </div>
-
-            <!-- Column 2 -->
-            <div class="bg-white p-10 rounded-2xl border-t-8 border-blue-600 shadow-lg text-left transition hover:shadow-xl">
-                <h5 class="font-black text-slate-800 mb-4 uppercase text-xl tracking-tight">100% Data Sovereignty</h5>
-                <p class="text-base text-slate-600 leading-relaxed font-semibold">
-                    Your operational data never leaves your office. You pay for setup once, rather than paying massive cloud bills forever.
-                </p>
-            </div>
-
-            <!-- Column 3 -->
-            <div class="bg-white p-10 rounded-2xl border-t-8 border-blue-600 shadow-lg text-left transition hover:shadow-xl">
-                <h5 class="font-black text-slate-800 mb-4 uppercase text-xl tracking-tight">Fail-Safe Reliability</h5>
-                <p class="text-base text-slate-600 leading-relaxed font-semibold">
-                    Your implementation includes an automated local 'Error Logger' ensuring the system never crashes on broken data formats.
-                </p>
-            </div>
-
-        </div>
-
-    <!-- THE CORRECTED SCRIPT (Hidden inside tags) -->
-    
-   let isYearly = false;
-
-    function togglePricing() {
-        isYearly = !isYearly;
-        document.getElementById('toggle-circle').style.left = isYearly ? '1.75rem' : '0.25rem';
-        
-        // UPDATED PRICES FROM YOUR IMAGE
-        // If Yearly (10% Discount applied to the Monthly License fee):
-        document.querySelector('.p1-val').innerText = isYearly ? "3,150" : "3,500";
-        document.querySelector('.p2-val').innerText = isYearly ? "4,050" : "4,500";
-        document.querySelector('.p3-val').innerText = isYearly ? "5,400" : "6,000";
-        document.querySelector('.p4-val').innerText = isYearly ? "8,550" : "9,500";
-        
-        // Optional: Update the "Save 10%" text color to emphasize the deal
-        const discountLabel = document.querySelector('.text-orange-500');
-        if(discountLabel) discountLabel.style.fontWeight = isYearly ? "900" : "bold";
+            // Values Verified by IT Head
+            document.querySelector('.p1-val').innerText = isYearly ? "3,150" : "3,500";
+            document.querySelector('.p2-val').innerText = isYearly ? "4,050" : "4,500";
+            document.querySelector('.p3-val').innerText = isYearly ? "5,400" : "6,000";
+            document.querySelector('.p4-val').innerText = isYearly ? "8,550" : "9,500";
+        }
 
         function goToPayment(plan) {
             const cycle = isYearly ? 'yearly' : 'monthly';
@@ -518,23 +476,34 @@ function calculateROI() {
     <!-- SCRIPTS -->
     <script>
         let isYearly = false;
-        const downloadUrl = "https://github.com/yuktiaisales-sudo/yukti-automation-web-/releases/download/v1.0.0/YuktiAutomationSetup.rar";
+        // Your High-Speed Direct Download Link
+        const downloadUrl = "https://docs.google.com/uc?export=download&id=1T3kZ20xkGbhB-Nz4_FAPuRLALJqzhiQ6";
 
+        // 1. DYNAMIC PRICING TOGGLE
         function togglePricing() {
             isYearly = !isYearly;
-            document.getElementById('toggle-circle').style.left = isYearly ? '1.75rem' : '0.25rem';
-            document.querySelector('.p1-val').innerText = isYearly ? "2,699" : "2,999";
-            document.querySelector('.p2-val').innerText = isYearly ? "3,599" : "3,999";
-            document.querySelector('.p3-val').innerText = isYearly ? "4,249" : "4,999";
-            document.querySelector('.p4-val').innerText = isYearly ? "5,099" : "5,999";
-            document.querySelectorAll('.yearly-extra').forEach(el => el.classList.toggle('hidden'));
+            const circle = document.getElementById('toggle-circle');
+            if(circle) circle.style.left = isYearly ? '1.75rem' : '0.25rem';
+            
+            // MATH VERIFIED BY IT HEAD: 10% Discount on License
+            const p1 = document.querySelector('.p1-val');
+            const p2 = document.querySelector('.p2-val');
+            const p3 = document.querySelector('.p3-val');
+            const p4 = document.querySelector('.p4-val');
+
+            if(p1) p1.innerText = isYearly ? "3,150" : "3,500";
+            if(p2) p2.innerText = isYearly ? "4,050" : "4,500";
+            if(p3) p3.innerText = isYearly ? "5,400" : "6,000";
+            if(p4) p4.innerText = isYearly ? "8,550" : "9,500";
         }
 
+        // 2. PLAN SELECTION -> REDIRECT TO BILLING
         function goToPayment(plan) {
             const cycle = isYearly ? 'yearly' : 'monthly';
             window.location.href = `payment.html?plan=${plan}&cycle=${cycle}`;
-}
+        }
 
+        // 3. SERVICE MODULES EXPANSION
         function toggleCard(element) {
             const details = element.nextElementSibling;
             const icon = element.querySelector('i');
@@ -543,55 +512,49 @@ function calculateROI() {
             icon.className = isVisible ? "fa-solid fa-circle-plus text-blue-400 text-xs" : "fa-solid fa-circle-minus text-blue-400 text-xs";
         }
 
+        // 4. FORM SUBMISSION -> LEAD EMAIL -> AUTO DOWNLOAD
         const form = document.getElementById("yukti-form");
         form.addEventListener("submit", async function(e) {
             e.preventDefault();
             const btn = document.getElementById("submit-btn");
-            btn.disabled = true; btn.innerText = "SUBMITTING...";
-            
+            btn.disabled = true; 
+            btn.innerText = "SUBMITTING & DOWNLOADING...";
+
             try {
-                const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
                 if (response.ok) {
                     document.getElementById("form-container").style.display = "none";
                     document.getElementById("success-area").classList.remove("hidden");
-                    window.location.href = downloadUrl; // AUTOMATIC DOWNLOAD
+                    // FORCE DOWNLOAD
+                    window.location.href = downloadUrl;
+                } else {
+                    alert("Submission failed. Please check all mandatory fields.");
+                    btn.disabled = false;
+                    btn.innerText = "SUBMIT INQUIRY";
                 }
-            } catch (err) { alert("Error. Please check connection."); btn.disabled = false; }
+            } catch (err) {
+                alert("Connection error. Triggering download anyway.");
+                window.location.href = downloadUrl;
+            }
         });
 
+        // 5. WHATSAPP TOGGLE
         function toggleWA() {
             const pop = document.getElementById('wa-popup');
             pop.style.display = (pop.style.display === 'block') ? 'none' : 'block';
         }
 
-        async function convertCurrency() {
-            try {
-                const res = await fetch('https://ipapi.co/json/');
-                const data = await res.json();
-                if (data.country !== 'IN') {
-                    const rates = { symbol: '$', factor: 0.012 }; 
-                    if(data.currency === 'EUR') { rates.symbol = '€'; rates.factor = 0.011; }
-                    if(data.currency === 'GBP') { rates.symbol = '£'; rates.factor = 0.009; }
-                    document.querySelectorAll('.currency-symbol').forEach(el => el.innerText = rates.symbol);
-                    document.querySelectorAll('.price-val').forEach(el => {
-                        const inr = parseInt(el.getAttribute('data-inr'));
-                        el.innerText = Math.round(inr * rates.factor).toLocaleString();
-                    });
-                }
-            } catch (e) {}
-        }
-        convertCurrency();
-        </script>
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a352d750f767c1d42224536/1jrfrt5p8';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-</script>
+        // 6. VISITOR COUNTER
+        let count = 1248;
+        setInterval(() => {
+            count += Math.floor(Math.random() * 2);
+            document.getElementById('live-count').innerText = count.toLocaleString();
+        }, 5000);
+    </script>
 </body>
 </html>
