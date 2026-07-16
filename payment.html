@@ -98,11 +98,22 @@
     };
 
     const prices = {
-        "excel_monthly": "₹2,999", "excel_yearly": "₹32,388",
-        "outlook_monthly": "₹3,999", "outlook_yearly": "₹43,188",
-        "google_monthly": "₹4,999", "google_yearly": "₹50,988",
-        "crm_monthly": "₹5,999", "crm_yearly": "₹61,188"
+        // --- UPDATED REVENUE ENGINE ---
+    // Math: Setup + [Months x Discounted Rate]
+    const prices = {
+        "excel_monthly": "₹16,000",   // 12500 + 3500
+        "excel_yearly": "₹50,300",    // 12500 + 37800 (10% off license)
+        
+        "outlook_monthly": "₹25,500", // 21000 + 4500
+        "outlook_yearly": "₹69,600",  // 21000 + 48600 (10% off license)
+        
+        "google_monthly": "₹33,000",  // 27000 + 6000
+        "google_yearly": "₹91,800",   // 27000 + 64800 (10% off license)
+        
+        "crm_monthly": "₹44,500",     // 35000 + 9500
+        "crm_yearly": "₹137,600"      // 35000 + 102600 (10% off license)
     };
+    
 
     // 2. DYNAMIC UI REFRESH
     window.onload = function() {
