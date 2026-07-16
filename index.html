@@ -436,7 +436,6 @@ function calculateROI() {
         // Optional: Update the "Save 10%" text color to emphasize the deal
         const discountLabel = document.querySelector('.text-orange-500');
         if(discountLabel) discountLabel.style.fontWeight = isYearly ? "900" : "bold";
-    }
 
         function goToPayment(plan) {
             const cycle = isYearly ? 'yearly' : 'monthly';
