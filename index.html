@@ -419,18 +419,24 @@ function calculateROI() {
         </div>
 
     <!-- THE CORRECTED SCRIPT (Hidden inside tags) -->
-    <script>
-        let isYearly = false;
-        function togglePricing() {
-            isYearly = !isYearly;
-            document.getElementById('toggle-circle').style.left = isYearly ? '1.75rem' : '0.25rem';
-            
-            // License logic: Apply ~10% discount for Yearly
-            document.querySelector('.p1-val').innerText = isYearly ? "2,249" : "2,499";
-            document.querySelector('.p2-val').innerText = isYearly ? "3,149" : "3,499";
-            document.querySelector('.p3-val').innerText = isYearly ? "4,049" : "4,499";
-            document.querySelector('.p4-val').innerText = isYearly ? "4,949" : "5,499";
-        }
+    
+   let isYearly = false;
+
+    function togglePricing() {
+        isYearly = !isYearly;
+        document.getElementById('toggle-circle').style.left = isYearly ? '1.75rem' : '0.25rem';
+        
+        // UPDATED PRICES FROM YOUR IMAGE
+        // If Yearly (10% Discount applied to the Monthly License fee):
+        document.querySelector('.p1-val').innerText = isYearly ? "3,150" : "3,500";
+        document.querySelector('.p2-val').innerText = isYearly ? "4,050" : "4,500";
+        document.querySelector('.p3-val').innerText = isYearly ? "5,400" : "6,000";
+        document.querySelector('.p4-val').innerText = isYearly ? "8,550" : "9,500";
+        
+        // Optional: Update the "Save 10%" text color to emphasize the deal
+        const discountLabel = document.querySelector('.text-orange-500');
+        if(discountLabel) discountLabel.style.fontWeight = isYearly ? "900" : "bold";
+    }
 
         function goToPayment(plan) {
             const cycle = isYearly ? 'yearly' : 'monthly';
